@@ -18,8 +18,6 @@ int contarImpares(int array[], int tamanho)
             return contarImpares(array, tamanho - 1) + 1;
         }
     }
-
-    return -1;
 }
 
 int main(void)
