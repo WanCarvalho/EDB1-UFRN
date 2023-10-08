@@ -58,13 +58,6 @@ int main(void)
 	assert(acharMenorOuIgual(array, 0, tamanho - 1, 9) == 4);
 	assert(acharMenorOuIgual(array, 0, tamanho - 1, 11) == 5);
 	assert(acharMenorOuIgual(array, 0, tamanho - 1, 13) == 6);
-	// std::cout << acharMenorOuIgual(array, 0, tamanho - 1, 1) << std::endl;
-	// std::cout << acharMenorOuIgual(array, 0, tamanho - 1, 3) << std::endl;
-	// std::cout << acharMenorOuIgual(array, 0, tamanho - 1, 5) << std::endl;
-	// std::cout << acharMenorOuIgual(array, 0, tamanho - 1, 7) << std::endl;
-	// std::cout << acharMenorOuIgual(array, 0, tamanho - 1, 9) << std::endl;
-	// std::cout << acharMenorOuIgual(array, 0, tamanho - 1, 11) << std::endl;
-	// std::cout << acharMenorOuIgual(array, 0, tamanho - 1, 13) << std::endl;
 	std::cout << "Q1 - Testes 2: OK!" << std::endl;
 
 	std::cout << "\nQ1 - Testes 3: buscando elemento que não existe no array, e que não existe no array um menor do que o buscado." << std::endl;
