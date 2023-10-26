@@ -68,7 +68,7 @@ int *Dicionario::buscar(const std::string &chave) const
     {
         if (this->elementos[i].chave == chave)
         {
-            return &i;
+            return &elementos[i].valor;
         }
     }
 
