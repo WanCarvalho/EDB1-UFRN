@@ -10,7 +10,7 @@
 
 using namespace std;
 
-Par<std::string, std::string> *REMOVIDO = (Par<std::string,std::string>*)(-1);
+Par<std::string, std::string> *REMOVIDO = (Par<std::string, std::string> *)(-1);
 
 TabelaHash::TabelaHash()
 {
@@ -26,9 +26,9 @@ TabelaHash::TabelaHash(const std::size_t tamanho)
 
 void TabelaHash::iniciar()
 {
-    this->array = new Par<std::string, string>*[ this->getTamanho() ];
+    this->array = new Par<std::string, string> *[this->getTamanho()];
     this->quantidade = 0;
-    for( std::size_t i = 0; i < this->getTamanho(); i++ )
+    for (std::size_t i = 0; i < this->getTamanho(); i++)
     {
         this->array[i] = nullptr;
     }
@@ -36,16 +36,16 @@ void TabelaHash::iniciar()
 
 TabelaHash::~TabelaHash()
 {
-    for( std::size_t i = 0; i < this->getTamanho(); i++ )
+    for (std::size_t i = 0; i < this->getTamanho(); i++)
     {
-        Par<string, string>* entry = this->array[i];
-        
-        if( entry != nullptr && entry != REMOVIDO )
+        Par<string, string> *entry = this->array[i];
+
+        if (entry != nullptr && entry != REMOVIDO)
         {
             delete entry;
         }
     }
-    delete [] array;
+    delete[] array;
 }
 
 /**
@@ -54,21 +54,28 @@ TabelaHash::~TabelaHash()
  */
 bool TabelaHash::inserir(const string chave, const string valor)
 {
+    if (this->getQuantidade() == this->getTamanho())
+    {
+        return false;
+    }
+
     auto hash = this->hash(chave);
 
     int indiceRemovido = -1;
 
     // Trata colisão usando sondagem linear: calcula o hash e testa a posição, caso não dê certo testa +1, +2, +3...
-    for(int delta = 0; delta < this->getTamanho(); delta++){
+    for (int delta = 0; delta < this->getTamanho(); delta++)
+    {
         auto indice = (hash + delta) % this->getTamanho(); // Módulo tamanho para circular o array (evita chegar na ultima posição do array e não verificar as primeiras posições)
 
         auto elemento = this->array[indice];
 
-        if(elemento == nullptr){
-            
+        if (elemento == nullptr)
+        {
+
             // Decide se vai inserir numa posição nula ou marcada como REMOVIDO
             auto posicaoInsercao = indiceRemovido != -1 ? indiceRemovido : indice;
-            
+
             // Insiro novo elemento
             auto novoELemento = new Par<string, string>(chave, valor);
             this->array[posicaoInsercao] = novoELemento;
@@ -76,11 +83,13 @@ bool TabelaHash::inserir(const string chave, const string valor)
 
             return true;
         }
-        else if(elemento == REMOVIDO){
+        else if (elemento == REMOVIDO)
+        {
             indiceRemovido = indice;
             continue;
         }
-        else if(elemento->getChave() == chave){ //caso possua um elemento com mesma chave é feita a atualização do valor desse elemento
+        else if (elemento->getChave() == chave)
+        { // caso possua um elemento com mesma chave é feita a atualização do valor desse elemento
             this->array[indice]->setValor(valor);
             return true;
         }
@@ -90,24 +99,28 @@ bool TabelaHash::inserir(const string chave, const string valor)
 }
 
 /**
- Este método deve buscar na tabela um Par com 'chave', retornando o 'valor' associado. 
+ Este método deve buscar na tabela um Par com 'chave', retornando o 'valor' associado.
  */
 std::string TabelaHash::buscar(const string chave)
 {
     auto hash = this->hash(chave);
 
-    for(int delta = 0; delta < this->getTamanho(); delta++){
+    for (int delta = 0; delta < this->getTamanho(); delta++)
+    {
         auto indice = (hash + delta) % this->getTamanho();
 
         auto elemento = this->array[indice];
 
-        if(elemento == nullptr){
+        if (elemento == nullptr)
+        {
             return "NÃO ACHOU";
         }
-        else if(elemento == REMOVIDO){
+        else if (elemento == REMOVIDO)
+        {
             continue;
         }
-        else if(elemento->getChave() == chave){
+        else if (elemento->getChave() == chave)
+        {
             return elemento->getValor();
         }
     }
@@ -123,18 +136,22 @@ bool TabelaHash::remover(const string chave)
 {
     auto hash = this->hash(chave);
 
-    for(int delta = 0; delta < this->getTamanho(); delta++){
+    for (int delta = 0; delta < this->getTamanho(); delta++)
+    {
         auto indice = (hash + delta) % this->getTamanho();
-        
+
         auto elemento = this->array[indice];
 
-        if(elemento == nullptr){ //condição de parada, caso o elemento seja nulo quer dizer que o que está sendo procurado não está no array
+        if (elemento == nullptr)
+        { // condição de parada, caso o elemento seja nulo quer dizer que o que está sendo procurado não está no array
             return false;
         }
-        else if(elemento == REMOVIDO){ //condição para que caso ache um elemento com REMOVIDO continue a procurar nos elementos seguintes
+        else if (elemento == REMOVIDO)
+        { // condição para que caso ache um elemento com REMOVIDO continue a procurar nos elementos seguintes
             continue;
         }
-        else if(elemento->getChave() == chave){
+        else if (elemento->getChave() == chave)
+        {
             delete this->array[indice];
             this->array[indice] = REMOVIDO;
             --this->quantidade;
@@ -153,26 +170,25 @@ float TabelaHash::fatorDeCarga()
 
 void TabelaHash::aumentar()
 {
-    std::size_t tamanhoNovo = 2*this->getTamanho() + 1;
+    std::size_t tamanhoNovo = 2 * this->getTamanho() + 1;
     this->redimensionar(tamanhoNovo);
 }
 
 void TabelaHash::diminuir()
 {
-    std::size_t metadeTamanho = this->getTamanho()/2;
+    std::size_t metadeTamanho = this->getTamanho() / 2;
     std::size_t tamanhoNovo = metadeTamanho % 2 == 0 ? metadeTamanho + 1 : metadeTamanho;
     this->redimensionar(tamanhoNovo);
 }
 
 void TabelaHash::redimensionar(std::size_t tamanhoNovo)
 {
-    
 }
 
 std::size_t TabelaHash::preHash(const string chave)
 {
     std::size_t x = 0;
-    for(std::size_t i = 0; i < chave.size(); i++)
+    for (std::size_t i = 0; i < chave.size(); i++)
     {
         // Não mudar!
         // Coloquei propositalmente uma versão simples pra facilitar a criação de colisões nos testes!
@@ -214,18 +230,18 @@ bool TabelaHash::cheia()
 
 bool TabelaHash::verificarDuplicatas()
 {
-    
-    for(std::size_t i = 0; i < tamanho; ++i)
+
+    for (std::size_t i = 0; i < tamanho; ++i)
     {
         auto elementoI = this->array[i];
-        if(elementoI != nullptr && elementoI != REMOVIDO)
+        if (elementoI != nullptr && elementoI != REMOVIDO)
         {
-            for(std::size_t j = i+1; j < tamanho; ++j)
+            for (std::size_t j = i + 1; j < tamanho; ++j)
             {
                 auto elementoJ = this->array[j];
-                if(elementoJ != nullptr && elementoJ != REMOVIDO)
+                if (elementoJ != nullptr && elementoJ != REMOVIDO)
                 {
-                    if(elementoI->getChave() == elementoJ->getChave())
+                    if (elementoI->getChave() == elementoJ->getChave())
                     {
                         // Repetição de chaves
                         return false;
@@ -239,14 +255,14 @@ bool TabelaHash::verificarDuplicatas()
 
 void TabelaHash::imprimir()
 {
-    for(std::size_t  i = 0; i < this->getTamanho(); i++)
+    for (std::size_t i = 0; i < this->getTamanho(); i++)
     {
-        Par<string, string> * entry = array[i];
-        if( entry == REMOVIDO )
+        Par<string, string> *entry = array[i];
+        if (entry == REMOVIDO)
         {
             std::cout << i << ": REMOVIDO" << std::endl;
         }
-        else if( entry != nullptr )
+        else if (entry != nullptr)
         {
             std::cout << i << ": " << entry->getChave() << ":" << entry->getValor() << std::endl;
         }
