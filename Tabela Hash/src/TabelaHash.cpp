@@ -183,6 +183,40 @@ void TabelaHash::diminuir()
 
 void TabelaHash::redimensionar(std::size_t tamanhoNovo)
 {
+    auto arrayVelho = this->array;
+    auto arrayNovo = new Par<string, string>*[tamanhoNovo];
+
+    for(size_t i = 0; i < tamanhoNovo; i++){
+        arrayNovo[i] = nullptr;
+    }  
+
+    auto tamanhoVelho = this->getTamanho();
+    this->setTamanho(tamanhoNovo);
+
+    // Percorrer array velho
+    for(size_t i = 0; i < tamanhoVelho; i++){
+        auto elemento = arrayVelho[i];
+
+        // Encontrar elementos válidos no array velho
+        if(elemento != nullptr && elemento != REMOVIDO){
+            auto hash = this->hash(elemento->getChave());
+
+            // Inserir elementos válidos no array novo, tratando possíveis colisões
+            for(size_t delta = 0; delta < tamanhoNovo; delta++){
+                auto indice = (hash + delta) % tamanhoNovo;
+
+                if(arrayNovo[indice] == nullptr){
+                    arrayNovo[indice] = elemento;
+                    break; //lembrar de colocar o break senão inválida o arrayNovo
+                }
+            }
+            
+        }
+    }
+
+    this->array = arrayNovo;
+
+    delete[] arrayVelho;
 }
 
 std::size_t TabelaHash::preHash(const string chave)
