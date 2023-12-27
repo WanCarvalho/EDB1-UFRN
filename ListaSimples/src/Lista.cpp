@@ -91,7 +91,7 @@ bool Lista::removerFim()
     {
         No *aux = this->primeiro;
 
-        while (aux->proximo != ultimo)
+        while (aux->proximo != this->ultimo)
         {
             aux = aux->proximo;
         }
