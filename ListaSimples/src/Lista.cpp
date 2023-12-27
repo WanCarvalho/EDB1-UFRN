@@ -10,6 +10,15 @@ Lista::Lista()
 
 Lista::~Lista()
 {
+    if(this->quantidade > 0){
+        No* aux = this->primeiro;
+
+        while(aux != nullptr){
+            No* aux2 = aux;
+            aux = aux->proximo;
+            delete aux2;
+        }
+    }
 }
 
 bool Lista::inserirInicio(const std::string &elemento)
