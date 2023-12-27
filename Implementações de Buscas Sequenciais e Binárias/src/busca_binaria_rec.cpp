@@ -1,8 +1,17 @@
 #include "busca.h"
 
-int busca_rec(string entrada[], int primeira, int ultima, string chave)
+int busca_rec(string entrada[], int inicio, int fim, string chave)
 {
-    throw "ERRO: Busca binária recursiva ainda não foi implementada.";
+    int meio = (inicio + fim) / 2;
+
+    if(chave > entrada[meio]){
+        inicio = meio + 1;
+    } else if(chave < entrada[meio]){
+        fim = meio - 1;
+    } else {
+        return meio;
+    }
+    return -1;
 }
 
 int busca(string entrada[], int tamanho, string chave)
