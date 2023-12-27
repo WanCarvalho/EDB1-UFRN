@@ -94,11 +94,11 @@ bool Lista::removerFim()
         while (aux->proximo != ultimo)
         {
             aux = aux->proximo;
-
-            delete this->ultimo;
-            this->ultimo = aux;
-            aux->proximo = nullptr;
         }
+
+        delete this->ultimo;
+        this->ultimo = aux;
+        aux->proximo = nullptr;
     }
 
     --this->quantidade;
