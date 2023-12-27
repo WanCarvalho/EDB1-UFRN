@@ -43,7 +43,7 @@ bool Lista::inserirFim(const std::string &elemento)
     }
     else
     {
-        novo->proximo = this->ultimo;
+        this->ultimo->proximo = novo;
         this->ultimo = novo;
     }
 
