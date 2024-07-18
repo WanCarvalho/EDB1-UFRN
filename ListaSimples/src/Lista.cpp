@@ -10,6 +10,15 @@ Lista::Lista()
 
 Lista::~Lista()
 {
+    if(this->quantidade > 0){
+        No* aux = this->primeiro;
+
+        while(aux != nullptr){
+            No* aux2 = aux;
+            aux = aux->proximo;
+            delete aux2;
+        }
+    }
 }
 
 bool Lista::inserirInicio(const std::string &elemento)
@@ -43,7 +52,7 @@ bool Lista::inserirFim(const std::string &elemento)
     }
     else
     {
-        novo->proximo = this->ultimo;
+        this->ultimo->proximo = novo;
         this->ultimo = novo;
     }
 
@@ -91,14 +100,14 @@ bool Lista::removerFim()
     {
         No *aux = this->primeiro;
 
-        while (aux->proximo != ultimo)
+        while (aux->proximo != this->ultimo)
         {
             aux = aux->proximo;
-
-            delete this->ultimo;
-            this->ultimo = aux;
-            aux->proximo = nullptr;
         }
+
+        delete this->ultimo;
+        this->ultimo = aux;
+        aux->proximo = nullptr;
     }
 
     --this->quantidade;

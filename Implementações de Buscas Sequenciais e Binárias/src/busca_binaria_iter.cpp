@@ -17,7 +17,7 @@ int busca(string entrada[], int tamanho, string chave)
         }
         else if (chave > entrada[meio])
         {
-            fim = meio + 1;
+            inicio = meio + 1;
         }
         else
         {
