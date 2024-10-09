@@ -57,7 +57,7 @@ Considere que um vetor bitônico-inverso é um vetor de inteiros sem repetiçõe
 Nesta questão, implemente a função findBase que recebe como entrada um vetor bitônico-inverso e retorna o índice da base, isto é, do elemento Ai, que representa a transição da sequencia decrescente para a sequencia crescente.
 Sua solução deverá ser recursiva ter complexidade Θ (lg(n)).
 
-## Questão 6
+## Questão 6 - (Não implementada)
 
 Um anagrama é um jogo de palavras em que uma palavra é construída a partir do rearranjo das letras de uma outra palavra utilizando cada letra da palavra original exatamente uma vez, isto é, não mais nem menos do que isso.
 Por exemplo: Iracema é um anagrama da palavra America.
