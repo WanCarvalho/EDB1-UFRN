@@ -1,0 +1,31 @@
+Array original: 8 5 2 10 3 
+
+Iteracao externa 1:
+  Comparando v[0] = 8 e v[1] = 5
+  Trocando 8 e 5
+  Comparando v[1] = 8 e v[2] = 2
+  Trocando 8 e 2
+  Comparando v[2] = 8 e v[3] = 10
+  Comparando v[3] = 10 e v[4] = 3
+  Trocando 10 e 3
+  Estado do array: 5 2 8 3 10
+
+Iteracao externa 2:
+  Comparando v[0] = 5 e v[1] = 2
+  Trocando 5 e 2
+  Comparando v[1] = 5 e v[2] = 8
+  Comparando v[2] = 8 e v[3] = 3
+  Trocando 8 e 3
+  Estado do array: 2 5 3 8 10
+
+Iteracao externa 3:
+  Comparando v[0] = 2 e v[1] = 5
+  Comparando v[1] = 5 e v[2] = 3
+  Trocando 5 e 3
+  Estado do array: 2 3 5 8 10
+
+Iteracao externa 4:
+  Comparando v[0] = 2 e v[1] = 3
+  Estado do array: 2 3 5 8 10
+  
+Array ordenado: 2 3 5 8 10

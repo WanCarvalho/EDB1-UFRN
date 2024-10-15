@@ -1,0 +1,25 @@
+Array original: 8 5 2 10 3 
+
+Iteracao 1, chave: 5
+  Movendo v[0] = 8 para v[1]
+  Inserindo chave 5 na posicao v[0]
+  Estado atual do vetor: 5 8 2 10 3 
+
+Iteracao 2, chave: 2
+  Movendo v[1] = 8 para v[2]
+  Movendo v[0] = 5 para v[1]
+  Inserindo chave 2 na posicao v[0]
+  Estado atual do vetor: 2 5 8 10 3 
+
+Iteracao 3, chave: 10
+  Inserindo chave 10 na posicao v[3]
+  Estado atual do vetor: 2 5 8 10 3
+
+Iteracao 4, chave: 3
+  Movendo v[3] = 10 para v[4]
+  Movendo v[2] = 8 para v[3]
+  Movendo v[1] = 5 para v[2]
+  Inserindo chave 3 na posicao v[1]
+  Estado atual do vetor: 2 3 5 8 10
+  
+Array ordenado: 2 3 5 8 10

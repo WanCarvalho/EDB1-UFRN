@@ -1,0 +1,34 @@
+Array original: 8 5 2 10 3 
+
+Iteracao externa 0, indice inicial: 0, valor: 8
+  Comparando v[1] = 5 com v[0] = 8
+  Novo minimo encontrado em v[1] = 5
+  Comparando v[2] = 2 com v[1] = 5
+  Novo minimo encontrado em v[2] = 2
+  Comparando v[3] = 10 com v[2] = 2
+  Comparando v[4] = 3 com v[2] = 2
+  Trocando v[0] = 8 com v[2] = 2
+  Estado atual do vetor: 2 5 8 10 3 
+
+Iteracao externa 1, indice inicial: 1, valor: 5
+  Comparando v[2] = 8 com v[1] = 5
+  Comparando v[3] = 10 com v[1] = 5
+  Comparando v[4] = 3 com v[1] = 5
+  Novo minimo encontrado em v[4] = 3
+  Trocando v[1] = 5 com v[4] = 3
+  Estado atual do vetor: 2 3 8 10 5
+
+Iteracao externa 2, indice inicial: 2, valor: 8
+  Comparando v[3] = 10 com v[2] = 8
+  Comparando v[4] = 5 com v[2] = 8
+  Novo minimo encontrado em v[4] = 5
+  Trocando v[2] = 8 com v[4] = 5
+  Estado atual do vetor: 2 3 5 10 8
+
+Iteracao externa 3, indice inicial: 3, valor: 10
+  Comparando v[4] = 8 com v[3] = 10
+  Novo minimo encontrado em v[4] = 8
+  Trocando v[3] = 10 com v[4] = 8
+  Estado atual do vetor: 2 3 5 8 10
+  
+Array ordenado: 2 3 5 8 10
